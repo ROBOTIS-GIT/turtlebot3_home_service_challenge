@@ -1,0 +1,32 @@
+<launch>
+  <arg name="use_robot_name" default="tb3_manipulation"/>
+  <arg name="marker_size" default="8.8" />
+  <arg name="max_new_marker_error" default="0.08" />
+  <arg name="max_track_error" default="0.2" />
+  <arg name="use_camera" default="false" />
+                
+  <arg name="cam_image_topic" default="/$(arg use_robot_name)/camera/color/image_raw" />
+  <arg name="cam_info_topic" default="/$(arg use_robot_name)/camera/color/camera_info" />
+  <arg name="sim_cam_image_topic" value="/$(arg use_robot_name)/camera/rgb/image_raw" />
+  <arg name="sim_cam_info_topic" value="/$(arg use_robot_name)/camera/rgb/camera_info" />
+        
+  <arg name="output_frame" default="camera" />
+  <arg name="bundle_files" default="$(find ar_track_alvar)/bundles/truthTableLeg.xml $(find ar_track_alvar)/bundles/table_8_9_10.xml" />
+
+  <!-- <node name="ar_track_alvar" pkg="ar_track_alvar" type="findMarkerBundlesNoKinect" respawn="false" output="screen" args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam_image_topic) $(arg cam_info_topic) $(arg output_frame) $(arg bundle_files)" /> -->
+  <node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
+    <param name="marker_size" value="$(arg marker_size)"/>
+    <param name="max_new_marker_error" value="$(arg max_new_marker_error)"/>
+    <param name="max_track_error" value="$(arg max_track_error)"/>
+    <param name="output_frame" value="$(arg output_frame)"/> 
+    <remap from="camera_image" to="/raspicam_node/image"/>
+    <remap from="camera_info" to="/raspicam_node/camera_info"/>
+  </node>
+  
+  <!-- realsense -->
+  <group if="$(arg use_camera)" ns="$(arg use_robot_name)">
+    <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+      <arg name="tf_prefix" value="$(arg use_robot_name)/camera" />
+    </include>
+  </group>
+</launch>

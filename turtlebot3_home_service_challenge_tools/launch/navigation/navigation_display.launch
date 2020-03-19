@@ -1,0 +1,16 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="map_file" default="$(find turtlebot3_home_service_challenge_tools)/maps/tb3_hsc.yaml"/>
+  <arg name="open_rviz" default="true"/>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_home_service_challenge_tools)/rviz/tb3_hsc.rviz">
+      <remap from="initialpose"  to="$(arg use_robot_name)/initialpose"/>
+      <remap from="move_base_simple/goal"  to="$(arg use_robot_name)/move_base_simple/goal"/>
+    </node>
+  </group>
+</launch>

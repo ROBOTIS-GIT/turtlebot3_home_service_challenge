@@ -1,0 +1,9 @@
+<launch>
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  <arg name="marker_size" default="8.8" />
+        
+  <node name="laser_scan_filter_node" pkg="turtlebot3_home_service_challenge_tools" type="laser_scan_filter_node" respawn="false" output="screen">
+    <param name="mean_k" value="4"/>
+    <param name="std_dev_mul" value="2"/>
+  </node>  
+</launch>

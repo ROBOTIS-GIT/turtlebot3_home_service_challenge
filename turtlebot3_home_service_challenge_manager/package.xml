@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>turtlebot3_home_service_challenge_manager</name>
+  <version>0.0.1</version>
+  <description>The turtlebot3_home_service_challenge_manager package</description>
+
+  <license>Apache 2.0</license>
+  <author email="kmjung@robotis.com">kayman</author>
+  <maintainer email="kmjung@robotis.com">kayman</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>turtlebot3_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>cmake_modules</depend>
+  <depend>boost</depend>
+  <depend>eigen_conversions</depend>
+  <depend>tf</depend>
+  <depend>move_base_msgs</depend>
+  <depend>roslib</depend>
+  <depend>actionlib</depend>
+  <depend>actionlib_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>moveit_msgs</depend>
+  <depend>moveit_core</depend>
+  <depend>moveit_ros_planning</depend>
+  <depend>moveit_ros_planning_interface</depend>
+
+</package>

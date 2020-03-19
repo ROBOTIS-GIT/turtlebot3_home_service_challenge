@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>turtlebot3_home_service_challenge_tools</name>
+  <version>0.0.1</version>
+  <description>The turtlebot3_home_service_challenge_tools package</description>
+  
+  <license>Apache 2.0</license>
+  <author email="kmjung@robotis.com">kayman</author>
+  <maintainer email="kmjung@robotis.com">kayman</maintainer>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>rospy</depend>
+  <depend>sensor_msgs</depend>
+
+</package>

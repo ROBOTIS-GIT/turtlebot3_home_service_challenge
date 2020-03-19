@@ -1,0 +1,14 @@
+local_costmap:
+  global_frame: /tb3_hsc/odom
+  robot_base_frame: /tb3_hsc/base_footprint
+
+  update_frequency: 10.0
+  publish_frequency: 10.0
+  transform_tolerance: 0.5  
+
+  static_map: false  
+  rolling_window: true
+  width: 1
+  height: 1
+  resolution: 0.025 #0.05
+  
