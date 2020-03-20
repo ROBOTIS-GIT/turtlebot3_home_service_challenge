@@ -1,0 +1,29 @@
+<launch>
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  <arg name="marker_size" default="8.8" />
+  <arg name="max_new_marker_error" default="0.08" />
+  <arg name="max_track_error" default="0.2" />
+  <arg name="sim" default="false" />
+                
+  <arg name="cam_image_topic" default="/$(arg use_robot_name)/raspicam_node/image" />
+  <arg name="cam_info_topic" default="/$(arg use_robot_name)/raspicam_node/camera_info" />
+  <arg name="sim_cam_image_topic" value="/$(arg use_robot_name)/camera/rgb/image_raw" />
+  <arg name="sim_cam_info_topic" value="/$(arg use_robot_name)/camera/rgb/camera_info" />
+        
+  <arg name="output_frame" default="/$(arg use_robot_name)/camera_rgb_optical_frame" />
+  <arg name="bundle_files" default="$(find ar_track_alvar)/bundles/truthTableLeg.xml $(find ar_track_alvar)/bundles/table_8_9_10.xml" />
+
+  <!-- <node name="ar_track_alvar" pkg="ar_track_alvar" type="findMarkerBundlesNoKinect" respawn="false" output="screen" args="$(arg marker_size) $(arg max_new_marker_error) $(arg max_track_error) $(arg cam_image_topic) $(arg cam_info_topic) $(arg output_frame) $(arg bundle_files)" /> -->
+  <node name="ar_track_alvar" pkg="ar_track_alvar" type="individualMarkersNoKinect" respawn="false" output="screen">
+    <param name="marker_size" value="$(arg marker_size)"/>
+    <param name="max_new_marker_error" value="$(arg max_new_marker_error)"/>
+    <param name="max_track_error" value="$(arg max_track_error)"/>
+    <param name="output_frame" value="$(arg output_frame)"/> 
+    <remap unless="$(arg sim)" from="camera_image" to="$(arg cam_image_topic)"/>
+    <remap unless="$(arg sim)" from="camera_info" to="$(arg cam_info_topic)"/>
+    <remap if="$(arg sim)" from="camera_image" to="$(arg sim_cam_image_topic)"/>
+    <remap if="$(arg sim)" from="camera_info" to="$(arg sim_cam_info_topic)"/>
+  </node>
+    
+</launch>
+

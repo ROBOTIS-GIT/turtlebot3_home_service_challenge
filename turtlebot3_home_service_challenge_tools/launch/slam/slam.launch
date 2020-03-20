@@ -1,0 +1,29 @@
+<launch>
+  <!-- Arguments -->
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, cartographer, frontier_exploration]"/>
+  <arg name="configuration_basename" default="turtlebot3_lds_2d.lua"/>
+  <arg name="open_rviz" default="false"/>
+
+  <!-- TurtleBot3 -->
+  <!-- <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch"> -->
+    <!-- <arg name="model" value="$(arg model)" /> -->
+  <!-- </include> -->
+
+  <!-- SLAM: Gmapping, Cartographer, Hector, Karto, Frontier_exploration, RTAB-Map -->
+  <group ns = "$(arg use_robot_name)">
+    <include file="$(find turtlebot3_home_service_challenge_tools)/launch/slam/$(arg slam_methods).launch">
+      <arg name="model" value="$(arg model)"/>
+      <arg name="configuration_basename" value="$(arg configuration_basename)"/>
+      <arg name="set_base_frame" value="$(arg use_robot_name)/base_footprint"/>
+      <arg name="set_odom_frame" value="$(arg use_robot_name)/odom"/>
+    </include>
+  </group>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find turtlebot3_home_service_challenge_tools)/rviz/tb3_hsc_slam.rviz"/>
+  </group>
+</launch>

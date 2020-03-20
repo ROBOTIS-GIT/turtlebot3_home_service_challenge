@@ -1,0 +1,16 @@
+<launch>
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  
+  <group ns="$(arg use_robot_name)">  
+    <param name="tf_prefix" value="$(arg use_robot_name)"/>
+    <!-- moveit bridge -->
+    <include file="$(find turtlebot3_manipulation_bringup)/launch/turtlebot3_manipulation_bringup.launch">
+      <!-- <arg name="use_robot_name" value="$(arg use_robot_name)"/> -->
+    </include>
+    
+    <!-- move group -->
+    <include file="$(find turtlebot3_home_service_challenge_tools)/launch/move_group.launch">
+      <!-- <arg name="use_robot_name" value="$(arg use_robot_name)"/> -->
+    </include>  
+  </group>  
+</launch>
