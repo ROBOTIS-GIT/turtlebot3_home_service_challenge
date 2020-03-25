@@ -5,13 +5,13 @@ arm_pose:
     joint2 : -60
     joint3 : 20
     joint4 : 40
-    gripper : 0.745  #0.013
+    gripper : 0.745 
     
   home_with_object :
     joint1 : 0.0
-    joint2 : -70 #-50 #-35
-    joint3 : 50 #25 #17.5
-    joint4 : 20 #25 #17.5
+    joint2 : -70 
+    joint3 : 50 
+    joint4 : 20 
       
   via_pose : 
     joint1 : 0.0

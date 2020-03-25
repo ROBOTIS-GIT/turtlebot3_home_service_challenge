@@ -1,0 +1,11 @@
+<launch>
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  
+  <group ns="$(arg use_robot_name)">
+        
+    <!-- Manager -->
+    <node pkg="turtlebot3_home_service_challenge_manager" type="tb3_hsc_manager_node" name="tb3_hsc_manager_node" output="screen" respawn="true" respawn_delay="5">
+      <param name="task_data_path" value="$(find turtlebot3_home_service_challenge_manager)/config/room.yaml"/>
+    </node>    
+  </group>
+</launch>
