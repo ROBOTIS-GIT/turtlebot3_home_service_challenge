@@ -22,7 +22,7 @@
   <!-- image transport : compressed -> raw -->
   <node name="image_republish" pkg="image_transport" type="republish" args="compressed in:=/$(arg use_robot_name)/raspicam_node/image raw out:=/$(arg use_robot_name)/raspicam_node/image" respawn="true" />
   
-  <!-- camera -->
+  <!-- camera sensing -->
   <include file="$(find turtlebot3_home_service_challenge_tools)/launch/camera_ar_track.launch">
     <arg name="use_robot_name" value="$(arg use_robot_name)"/>
   </include>
