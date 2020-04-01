@@ -10,7 +10,7 @@
   <arg name="debug" default="false"/>
   <arg name="verbose" default="false"/>
 
-  <rosparam file="$(find turtlebot3_home_service_challenge_simulation)/config/gazebo_controller_2.yaml" command="load" />
+  <rosparam file="$(find turtlebot3_manipulation_gazebo)/config/gazebo_controller.yaml" command="load" />
   
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
