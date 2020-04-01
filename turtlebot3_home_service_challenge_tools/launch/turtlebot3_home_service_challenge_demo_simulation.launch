@@ -1,0 +1,33 @@
+<launch>
+  <arg name="use_robot_name" default="tb3_hsc"/>
+  <arg name="address" default="127.0.0.1"/>
+  <arg name="sim" default="true"/>
+  
+  <!-- turtlebot3 -->
+  <!-- <include file="$(find turtlebot3_home_service_challenge_tools)/launch/turtlebot3_robot_remote.launch"> -->
+    <!-- <arg name="use_robot_name" value="$(arg use_robot_name)"/> -->
+    <!-- <arg name="address" value="$(arg address)"/> -->
+  <!-- </include> -->
+  
+  <!-- manipulation-moveit -->
+  <include file="$(find turtlebot3_home_service_challenge_tools)/launch/turtlebot3_home_service_challenge_moveit.launch">
+    <arg name="use_robot_name" value="$(arg use_robot_name)"/>
+    <arg name="sim" value="$(arg sim)"/>
+  </include>
+  
+  <!-- navigation -->
+  <include file="$(find turtlebot3_home_service_challenge_tools)/launch/navigation/navigation.launch">
+    <arg name="use_robot_name" value="$(arg use_robot_name)"/>
+    <arg name="open_rviz" value="true"/>
+    <arg name="rviz_file" value="tb3_hsc_sim.rviz"/>
+  </include>
+  
+  <!-- image transport : compressed -> raw -->
+  <!-- <node name="image_republish" pkg="image_transport" type="republish" args="compressed in:=/$(arg use_robot_name)/raspicam_node/image raw out:=/$(arg use_robot_name)/raspicam_node/image" respawn="true" /> -->
+  
+  <!-- camera -->
+  <include file="$(find turtlebot3_home_service_challenge_tools)/launch/camera_ar_track.launch">
+    <arg name="use_robot_name" value="$(arg use_robot_name)"/>
+    <arg name="sim" value="$(arg sim)"/>
+  </include>
+</launch>

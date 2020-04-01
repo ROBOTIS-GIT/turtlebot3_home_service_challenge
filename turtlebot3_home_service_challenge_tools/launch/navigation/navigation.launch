@@ -4,6 +4,7 @@
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
   <arg name="map_file" default="$(find turtlebot3_home_service_challenge_tools)/maps/tb3_hsc.yaml"/>
   <arg name="open_rviz" default="false"/>
+  <arg name="rviz_file" default="tb3_hsc.rviz"/>
   <arg name="move_forward_only" default="false"/>
   <arg name="use_map_server" default="true" />
 
@@ -35,7 +36,7 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find turtlebot3_home_service_challenge_tools)/rviz/tb3_hsc.rviz">
+          args="-d $(find turtlebot3_home_service_challenge_tools)/rviz/$(arg rviz_file)">
       <remap from="initialpose"  to="$(arg use_robot_name)/initialpose"/>
       <remap from="move_base_simple/goal"  to="$(arg use_robot_name)/move_base_simple/goal"/>
     </node>
