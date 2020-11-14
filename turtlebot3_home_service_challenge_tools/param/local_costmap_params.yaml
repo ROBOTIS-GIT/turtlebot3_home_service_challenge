@@ -1,6 +1,6 @@
 local_costmap:
-  global_frame: /tb3_hsc/odom
-  robot_base_frame: /tb3_hsc/base_footprint
+  global_frame: tb3_hsc/odom
+  robot_base_frame: tb3_hsc/base_footprint
 
   update_frequency: 10.0
   publish_frequency: 10.0
