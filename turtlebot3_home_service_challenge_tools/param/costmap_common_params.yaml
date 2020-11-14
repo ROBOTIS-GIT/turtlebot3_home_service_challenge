@@ -11,4 +11,4 @@ cost_scaling_factor: 10.0
 
 map_type: costmap
 observation_sources: scan
-scan: {sensor_frame: /tb3_hsc/base_scan, data_type: LaserScan, topic: /tb3_hsc/scan, marking: true, clearing: true}
+scan: {sensor_frame: tb3_hsc/base_scan, data_type: LaserScan, topic: tb3_hsc/scan, marking: true, clearing: true}
