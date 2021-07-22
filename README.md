@@ -1,6 +1,7 @@
-# Turtlebot3 Home Service Challenge(with OpenManipulator X) [![Build Status](https://travis-ci.org/ROBOTIS-GIT/turtlebot3_home_service_challenge.svg?branch=master)](https://travis-ci.org/ROBOTIS-GIT/turtlebot3_home_service_challenge)
+# Turtlebot3 Home Service Challenge(with OpenManipulator X)
 
 [![kinetic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/workflows/kinetic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/tree/kinetic-devel)
+[![melodic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/workflows/melodic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/tree/melodic-devel)
 [![noetic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/workflows/noetic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/tree/noetic-devel)
 
 ## TurtleBot3
