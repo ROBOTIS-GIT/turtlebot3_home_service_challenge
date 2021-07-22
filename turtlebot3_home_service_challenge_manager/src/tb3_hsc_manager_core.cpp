@@ -288,7 +288,7 @@ void TaskManager::scenario_thread(const std::string &start_scenario)
 {
   is_running_task_thread_ = true;
 
-  // laod scenario
+  // load scenario
   std::string scenario_path = ros::package::getPath(ROS_PACKAGE_NAME) + "/script/scenario.yaml";
 
   YAML::Node doc;
