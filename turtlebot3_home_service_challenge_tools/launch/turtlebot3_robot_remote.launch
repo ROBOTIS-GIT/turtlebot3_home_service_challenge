@@ -60,7 +60,7 @@
       <param name="image_width" value="320"/>
       <param name="image_height" value="240"/>
       <param name="rate" value="30"/>
-      <param name="frame_id" value="camera"/>    
+      <param name="frame_id" value="/$(arg camera_frame_id)"/>    
 
       <remap from="/$(arg use_robot_name)/cv_camera/set_camera_info" to="/$(arg use_robot_name)/camera/set_camera_info" />
       <remap from="/$(arg use_robot_name)/cv_camera/camera_info" to="/$(arg use_robot_name)/camera/camera_info" />
