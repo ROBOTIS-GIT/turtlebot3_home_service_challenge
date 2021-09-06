@@ -7,7 +7,6 @@
   
   <arg name="use_robot_name" default="tb3_hsc"/>
   <arg name="set_lidar_frame_id" default="base_scan"/>
-  
   <arg name="use_filter" default="true"/>
 
   <arg name="camera_id" default="0"/>
@@ -52,6 +51,12 @@
        <param name="publish_frequency" type="double" value="100.0" />
        <param name="prefix_tf_with" value="$(arg use_robot_name)/" />
     </node>
+
+    <!-- start joint state publisher -->
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+      <param name="/use_gui" value="false"/>
+      <rosparam param="source_list">["/joint_states"]</rosparam>
+    </node>  
 
     <!-- rpi camera -->
     <node machine="tb3" pkg="cv_camera" type="cv_camera_node" name="cv_camera" output="screen">
