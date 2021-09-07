@@ -3,7 +3,7 @@
   <arg name="use_robot_name" default="tb3_hsc"/>
 
   <!-- These are the arguments you can pass this launch file, for example paused:=true -->
-  <arg name="paused" default="true"/>
+  <arg name="paused" default="false"/>
   <arg name="use_sim_time" default="true"/>
   <arg name="gui" default="true"/>
   <arg name="headless" default="false"/>
@@ -35,7 +35,7 @@
     <!-- controller utils -->    
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen">
        <param name="publish_frequency" type="double" value="100.0" />
-       <param name="tf_prefix" value="$(arg use_robot_name)" />
+       <param name="prefix_tf_with" value="$(arg use_robot_name)/" />
     </node>
     
     <!-- start joint state controller -->
