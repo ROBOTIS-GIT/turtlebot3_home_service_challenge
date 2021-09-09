@@ -61,7 +61,7 @@
     <!-- rpi camera -->
     <node machine="tb3" pkg="cv_camera" type="cv_camera_node" name="cv_camera" output="screen">
 
-      <param name="camera_info_url" value="package://turtlebot3_autorace_camera/calibration/intrinsic_calibration/camerav2_320x240_30fps.yaml"/>
+      <param name="camera_info_url" value="package://turtlebot3_home_service_challenge_tools/config/camera_info/camerav2_1280x720.yaml"/>
       <param name="image_width" value="320"/>
       <param name="image_height" value="240"/>
       <param name="rate" value="30"/>
