@@ -5,8 +5,8 @@
   <arg name="max_track_error" default="0.2" />
   <arg name="sim" default="false" />
                 
-  <arg name="cam_image_topic" default="/$(arg use_robot_name)/raspicam_node/image" />
-  <arg name="cam_info_topic" default="/$(arg use_robot_name)/raspicam_node/camera_info" />
+  <arg name="cam_image_topic" default="/$(arg use_robot_name)/camera/image" />
+  <arg name="cam_info_topic" default="/$(arg use_robot_name)/camera/camera_info" />
   <arg name="sim_cam_image_topic" value="/$(arg use_robot_name)/camera/rgb/image_raw" />
   <arg name="sim_cam_info_topic" value="/$(arg use_robot_name)/camera/rgb/camera_info" />
         
