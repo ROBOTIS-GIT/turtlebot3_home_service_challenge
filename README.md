@@ -1,11 +1,8 @@
-# Turtlebot3 Home Service Challenge(with OpenManipulator X)
-
-[![kinetic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/workflows/kinetic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/tree/kinetic-devel)
-[![melodic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/workflows/melodic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/tree/melodic-devel)
-[![noetic-devel Status](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/workflows/noetic-devel/badge.svg)](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/tree/noetic-devel)
-
-## TurtleBot3
+# TurtleBot3
 <img src="https://github.com/ROBOTIS-GIT/emanual/blob/master/assets/images/platform/turtlebot3/logo_turtlebot3.png" width="300">
+
+- Active Branches: noetic, main
+- Legacy Branches: *-devel
 
 ## ROBOTIS e-Manual for TurtleBot3
 - [ROBOTIS e-Manual for TurtleBot3](http://turtlebot3.robotis.com/)
