@@ -1,22 +1,28 @@
 <?xml version="1.0"?>
-<package format="2">
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
   <name>turtlebot3_home_service_challenge_simulation</name>
-  <version>0.0.1</version>
+  <version>2.0.0</version>
   <description>
     The turtlebot3_home_service_challenge_simulation package
   </description>
+  <maintainer email="pyo@robotis.com">Pyo</maintainer>
   <license>Apache 2.0</license>
-  <author email="kmjung@robotis.com">kayman</author>
-  <author email="ashekim@robotis.com">Ashe Kim</author>
-  <maintainer email="willson@robotis.com">Will Son</maintainer>
   <url type="website">http://wiki.ros.org/turtlebot3</url>
-  <url type="emanual">http://turtlebot3.robotis.com</url>
+  <url type="website">http://turtlebot3.robotis.com</url>
   <url type="repository">https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge</url>
   <url type="bugtracker">https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/issues</url>
-  <buildtool_depend>catkin</buildtool_depend>
+  <author email="kmjung@robotis.com">kayman</author>
+  <author email="ashekim@robotis.com">Ashe Kim</author>
+  <author email="dddoggi1207@gmail.com">ChanHyeong Lee</author>
+  <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>controller_manager</depend>
   <depend>gazebo_ros</depend>
   <depend>gazebo_ros_control</depend>
   <depend>urdf</depend>
   <depend>xacro</depend>
+  <exec_depend>ament_cmake</exec_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>

@@ -1,0 +1,24 @@
+---
+home_service_challenge_core:
+  ros__parameters:
+    scenario:
+      room1:
+        target_marker_id: 0
+        goal_pose: [1.0, 0.5, 0.0, 0.0, 0.0, 0.7071, 0.7071]
+        goal_marker_id: 4
+        end_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+      room2:
+        target_marker_id: 1
+        goal_pose: [-1.0, 1.0, 0.0, 0.0, 0.0, 0.9239, 0.3827]
+        goal_marker_id: 5
+        end_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+      room3:
+        target_marker_id: 2
+        goal_pose: [-1.0, -1.0, 0.0, 0.0, 0.0, -0.9239, 0.3827]
+        goal_marker_id: 6
+        end_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]
+      room4:
+        target_marker_id: 3
+        goal_pose: [1.0, -0.5, 0.0, 0.0, 0.0, -0.7071, 0.7071]
+        goal_marker_id: 7
+        end_pose: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0]

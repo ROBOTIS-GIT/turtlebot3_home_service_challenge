@@ -1,0 +1,20 @@
+repositories:
+  turtlebot3:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3.git
+    version: humble
+
+  turtlebot3:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+    version: humble
+
+  turtlebot3_manipulation:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_manipulation.git
+    version: humble
+
+  DynamixelSDK:
+    type: git
+    url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+    version: humble
