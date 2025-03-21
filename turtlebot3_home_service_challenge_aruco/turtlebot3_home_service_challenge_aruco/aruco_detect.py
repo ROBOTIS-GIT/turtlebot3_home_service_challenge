@@ -56,7 +56,7 @@ class ArUcoDetect(Node):
 
         dict_id = getattr(cv2.aruco, self.ar_dict_id)
         self.ar_dict = cv2.aruco.getPredefinedDictionary(dict_id)
-        self.ar_param = cv2.aruco.DetectorParameters()
+        self.ar_param = cv2.aruco.DetectorParameters_create()
 
         self.bridge = CvBridge()
         self.br = TransformBroadcaster(self)
