@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright 2024 ROBOTIS CO., LTD.
+ * SPDX-License-Identifier: Apache-2.0
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +46,7 @@ public:
       "/is_manipulator_completed", 10);
   }
 
-  void initializeMoveGroups(const std::shared_ptr<rclcpp::Node> & node_ptr)
+  void initializeMoveGroups(const std::shared_ptr<rclcpp::Node> &node_ptr)
   {
     arm_move_group_ = std::make_shared<moveit::planning_interface::MoveGroupInterface>(
       node_ptr,

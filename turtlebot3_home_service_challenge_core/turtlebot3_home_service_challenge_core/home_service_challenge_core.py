@@ -19,9 +19,8 @@
 import threading
 import time
 
-import rclpy
-
 from geometry_msgs.msg import PoseStamped
+import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Bool
 from std_msgs.msg import Int32
@@ -29,6 +28,7 @@ from std_msgs.msg import String
 
 
 class HomeServiceChallengeCore(Node):
+
     def __init__(self):
         super().__init__(
             'home_service_challenge_core',

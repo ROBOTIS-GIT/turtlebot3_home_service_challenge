@@ -32,8 +32,9 @@ from tf2_ros import TransformBroadcaster
 
 
 class ArUcoDetect(Node):
+
     def __init__(self):
-        super().__init__("aruco_detect")
+        super().__init__('aruco_detect')
 
         self.sub_camera_info = self.create_subscription(
             CameraInfo,
@@ -130,5 +131,5 @@ def main():
     rclpy.shutdown()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

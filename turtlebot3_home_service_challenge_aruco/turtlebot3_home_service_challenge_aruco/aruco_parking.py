@@ -18,19 +18,19 @@
 
 import math
 
-import rclpy
-import tf2_ros
-import tf_transformations
-
 from geometry_msgs.msg import PoseStamped
 from nav2_msgs.action import NavigateToPose
+import rclpy
 from rclpy.action import ActionClient
 from rclpy.node import Node
+from scipy.spatial.transform import Rotation
 from std_msgs.msg import Bool
 from std_msgs.msg import Int32
+import tf2_ros
 
 
 class ArUcoParking(Node):
+
     def __init__(self):
         super().__init__('aruco_parking')
         self.create_subscription(Int32, '/target_marker_id', self.marker_callback, 10)
@@ -64,7 +64,8 @@ class ArUcoParking(Node):
 
         q = trans.transform.rotation
         q_tuple = [q.x, q.y, q.z, q.w]
-        marker_z_vector = tf_transformations.quaternion_matrix(q_tuple)[:3, 2]
+        rotation_matrix = Rotation.from_quat(q_tuple).as_matrix()
+        marker_z_vector = rotation_matrix[:, 2]
 
         offset = 0.23
         goal_x = marker_x + offset * marker_z_vector[0]
@@ -83,7 +84,7 @@ class ArUcoParking(Node):
         pose.pose.position.x = goal_x
         pose.pose.position.y = goal_y
         pose.pose.position.z = goal_z
-        quat = tf_transformations.quaternion_from_euler(0, 0, yaw)
+        quat = Rotation.from_euler('z', yaw).as_quat()
         pose.pose.orientation.x = quat[0]
         pose.pose.orientation.y = quat[1]
         pose.pose.orientation.z = quat[2]
