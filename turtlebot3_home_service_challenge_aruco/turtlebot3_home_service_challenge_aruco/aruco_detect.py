@@ -16,17 +16,19 @@
 #
 # Author: ChanHyeong Lee
 
+import cv2
+import numpy as np
 import rclpy
+
+from cv_bridge import CvBridge
+from geometry_msgs.msg import Pose
+from geometry_msgs.msg import TransformStamped
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
-from cv_bridge import CvBridge
-import numpy as np
-import cv2
-import tf_transformations
-from sensor_msgs.msg import CameraInfo, Image
-from geometry_msgs.msg import Pose
+from scipy.spatial.transform import Rotation
+from sensor_msgs.msg import CameraInfo
+from sensor_msgs.msg import Image
 from tf2_ros import TransformBroadcaster
-from geometry_msgs.msg import TransformStamped
 
 
 class ArUcoDetect(Node):
@@ -56,7 +58,10 @@ class ArUcoDetect(Node):
 
         dict_id = getattr(cv2.aruco, self.ar_dict_id)
         self.ar_dict = cv2.aruco.getPredefinedDictionary(dict_id)
-        self.ar_param = cv2.aruco.DetectorParameters_create()
+        if hasattr(cv2.aruco, 'DetectorParameters_create'):
+            self.ar_param = cv2.aruco.DetectorParameters_create()
+        else:
+            self.ar_param = cv2.aruco.DetectorParameters()
 
         self.bridge = CvBridge()
         self.br = TransformBroadcaster(self)
@@ -82,19 +87,17 @@ class ArUcoDetect(Node):
                 corners, self.ar_size, self.intrinsic_mat, self.distortion
             )
 
-            R_corr = tf_transformations.euler_matrix(-np.pi/2, 0, -np.pi/2)
+            R_corr = Rotation.from_euler('xyz', [-np.pi/2, 0, -np.pi/2]).as_matrix()
 
             for i, marker_id in enumerate(marker_ids):
                 tvec = tvecs[i][0]
                 rvec = np.array(rvecs[i][0])
 
                 R_marker, _ = cv2.Rodrigues(rvec)
-                R_marker_hom = np.eye(4)
-                R_marker_hom[0:3, 0:3] = R_marker
+                R_corrected = R_corr @ R_marker
+                t_corrected = R_corr @ tvec
 
-                R_corrected = np.dot(R_corr, R_marker_hom)
-                quat_corrected = tf_transformations.quaternion_from_matrix(R_corrected)
-                t_corrected = np.dot(R_corr[0:3, 0:3], tvec)
+                quat_corrected = Rotation.from_matrix(R_corrected).as_quat()
 
                 pose = Pose()
                 pose.position.x = t_corrected[0]
