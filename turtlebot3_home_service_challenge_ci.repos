@@ -6,12 +6,12 @@ repositories:
 
   turtlebot3_msgs:
     type: git
-    url: humble https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+    url: https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
     version: humble
 
   DynamixelSDK:
     type: git
-    url: humble https://github.com/ROBOTIS-GIT/DynamixelSDK.git
+    url: https://github.com/ROBOTIS-GIT/DynamixelSDK.git
     version: humble
 
   turtlebot3_simulations:
