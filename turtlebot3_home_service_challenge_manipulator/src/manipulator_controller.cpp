@@ -46,7 +46,7 @@ public:
       "/is_manipulator_completed", 10);
   }
 
-  void initializeMoveGroups(const std::shared_ptr<rclcpp::Node> &node_ptr)
+  void initializeMoveGroups(const std::shared_ptr<rclcpp::Node> & node_ptr)
   {
     arm_move_group_ = std::make_shared<moveit::planning_interface::MoveGroupInterface>(
       node_ptr,
