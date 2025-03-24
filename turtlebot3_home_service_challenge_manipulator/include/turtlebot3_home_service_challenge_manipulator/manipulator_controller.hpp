@@ -29,7 +29,7 @@
 #include <std_msgs/msg/string.hpp>
 #include <std_msgs/msg/bool.hpp>
 
-class ManipulatorController: public rclcpp::Node
+class ManipulatorController : public rclcpp::Node
 {
 public:
   ManipulatorController();
