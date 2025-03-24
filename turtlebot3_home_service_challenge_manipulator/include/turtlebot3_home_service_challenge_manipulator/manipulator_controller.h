@@ -34,7 +34,7 @@ class ManipulatorController: public rclcpp::Node
 public:
   ManipulatorController();
 
-  void initializeMoveGroups(const std::shared_ptr <rclcpp::Node> & node_ptr);
+  void initializeMoveGroups(const std::shared_ptr < rclcpp::Node > & node_ptr);
 
 private:
   void controlCallback(const std_msgs::msg::String::SharedPtr msg);
@@ -43,10 +43,10 @@ private:
   void placeTarget();
   void publishManipulatorCompleted();
 
-  rclcpp::Subscription<std_msgs::msg::String> ::SharedPtr subscription_;
-  rclcpp::Publisher<std_msgs::msg::Bool> ::SharedPtr manipulator_completed_pub_;
-  std::shared_ptr<moveit::planning_interface::MoveGroupInterface> arm_move_group_;
-  std::shared_ptr<moveit::planning_interface::MoveGroupInterface> gripper_move_group_;
+  rclcpp::Subscription < std_msgs::msg::String > ::SharedPtr subscription_;
+  rclcpp::Subscription < std_msgs::msg::String > ::SharedPtr subscription_;
+  std::shared_ptr < moveit::planning_interface::MoveGroupInterface > arm_move_group_;
+  std::shared_ptr < moveit::planning_interface::MoveGroupInterface > gripper_move_group_;
 };
 
 #endif  // TURTLEBOT3_HOME_SERVICE_CHALLENGE_MANIPULATOR__MANIPULATOR_CONTROLLER_H_
