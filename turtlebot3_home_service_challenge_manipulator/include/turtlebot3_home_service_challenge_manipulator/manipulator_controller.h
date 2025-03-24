@@ -43,18 +43,10 @@ private:
   void placeTarget();
   void publishManipulatorCompleted();
 
-<<<<<<< Updated upstream
-  rclcpp::Subscription <std_msgs::msg::String> ::SharedPtr subscription_;
-  rclcpp::Publisher <std_msgs::msg::Bool> ::SharedPtr manipulator_completed_pub_;
-
-  std::shared_ptr <moveit::planning_interface::MoveGroupInterface> arm_move_group_;
-  std::shared_ptr <moveit::planning_interface::MoveGroupInterface> gripper_move_group_;
-=======
   rclcpp::Subscription< std_msgs::msg::String > ::SharedPtr subscription_;
   rclcpp::Publisher< std_msgs::msg::Bool > ::SharedPtr manipulator_completed_pub_;
   std::shared_ptr< moveit::planning_interface::MoveGroupInterface > arm_move_group_;
   std::shared_ptr< moveit::planning_interface::MoveGroupInterface > gripper_move_group_;
->>>>>>> Stashed changes
 };
 
 #endif  // TURTLEBOT3_HOME_SERVICE_CHALLENGE_MANIPULATOR__MANIPULATOR_CONTROLLER_H_
