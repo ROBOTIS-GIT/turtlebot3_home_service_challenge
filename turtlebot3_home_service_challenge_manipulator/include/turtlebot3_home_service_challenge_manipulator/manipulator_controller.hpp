@@ -43,8 +43,8 @@ private:
   void placeTarget();
   void publishManipulatorCompleted();
 
-  rclcpp::Subscription<std_msgs::msg::String> ::SharedPtr subscription_;
-  rclcpp::Subscription<std_msgs::msg::String> ::SharedPtr subscription_;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
+  rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
   std::shared_ptr<moveit::planning_interface::MoveGroupInterface> arm_move_group_;
   std::shared_ptr<moveit::planning_interface::MoveGroupInterface> gripper_move_group_;
 };
