@@ -132,7 +132,7 @@ def generate_launch_description():
             ('~/cmd_vel_unstamped', 'cmd_vel'),
             ('~/odom', 'odom')
         ],
-        output="both",
+        output='both',
         condition=UnlessCondition(use_sim))
 
     robot_state_pub_node = Node(

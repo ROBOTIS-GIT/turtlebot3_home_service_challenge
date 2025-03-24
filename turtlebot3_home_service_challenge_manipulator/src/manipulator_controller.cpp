@@ -1,5 +1,9 @@
 /*******************************************************************************
+<<<<<<< Updated upstream
  * Copyright 2024 ROBOTIS CO., LTD.
+=======
+ * Copyright 2025 ROBOTIS CO., LTD.
+>>>>>>> Stashed changes
  * SPDX-License-Identifier: Apache-2.0
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -46,7 +50,11 @@ public:
       "/is_manipulator_completed", 10);
   }
 
+<<<<<<< Updated upstream
   void initializeMoveGroups(const std::shared_ptr<rclcpp::Node> &node_ptr)
+=======
+  void initializeMoveGroups(const std::shared_ptr< rclcpp::Node > & node_ptr)
+>>>>>>> Stashed changes
   {
     arm_move_group_ = std::make_shared<moveit::planning_interface::MoveGroupInterface>(
       node_ptr,

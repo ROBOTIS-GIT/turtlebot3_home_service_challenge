@@ -19,7 +19,12 @@
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
+from launch.actions import SetEnvironmentVariable
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+<<<<<<< Updated upstream
+=======
+from launch.substitutions import EnvironmentVariable
+>>>>>>> Stashed changes
 from launch.substitutions import LaunchConfiguration
 from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
@@ -27,6 +32,16 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    gazebo_model_path = PathJoinSubstitution([
+        FindPackageShare('turtlebot3_home_service_challenge_simulation'),
+        'models'
+    ])
+
+    set_model_path = SetEnvironmentVariable(
+        name='GAZEBO_MODEL_PATH',
+        value=[gazebo_model_path, ':', EnvironmentVariable('GAZEBO_MODEL_PATH')]
+    )
+
     world = LaunchConfiguration(
         'world',
         default=PathJoinSubstitution([
@@ -41,6 +56,8 @@ def generate_launch_description():
     use_sim = LaunchConfiguration('use_sim')
 
     return LaunchDescription([
+        set_model_path,
+
         DeclareLaunchArgument(
             'start_rviz',
             default_value='false',
