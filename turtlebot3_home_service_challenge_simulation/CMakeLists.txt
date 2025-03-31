@@ -1,29 +1,22 @@
-################################################################################
-# Set minimum required version of cmake, project name and compile options
-################################################################################
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.8)
 project(turtlebot3_home_service_challenge_simulation)
 
-################################################################################
-# Find catkin packages and libraries for catkin and system dependencies
-################################################################################
-find_package(catkin REQUIRED COMPONENTS
-  controller_manager
-  gazebo_ros
-  gazebo_ros_control
-  urdf
-  xacro
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
+
+install(DIRECTORY launch config models worlds
+  DESTINATION share/${PROJECT_NAME}
 )
 
-################################################################################
-# Declare catkin specific configuration to be passed to dependent projects
-################################################################################
-catkin_package()
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  set(ament_cmake_copyright_FOUND TRUE)
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
-################################################################################
-# Build
-################################################################################
-include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
-)
+ament_package()

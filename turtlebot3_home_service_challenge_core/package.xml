@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>turtlebot3_home_service_challenge_core</name>
+  <version>1.0.1</version>
+  <description>
+    Core package for turtlebot3_home_service_challenge
+  </description>
+  <maintainer email="pyo@robotis.com">Pyo</maintainer>
+  <license>Apache 2.0</license>
+  <url type="website">http://wiki.ros.org/turtlebot3</url>
+  <url type="website">http://turtlebot3.robotis.com</url>
+  <url type="repository">https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge</url>
+  <url type="bugtracker">https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/issues</url>
+  <author email="dddoggi1207@gmail.com">ChanHyeong Lee</author>
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
