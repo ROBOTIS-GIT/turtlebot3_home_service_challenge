@@ -20,7 +20,9 @@ import threading
 import time
 
 from geometry_msgs.msg import PoseStamped
+from nav2_msgs.action import NavigateToPose
 import rclpy
+from rclpy.action import ActionClient
 from rclpy.node import Node
 from std_msgs.msg import Bool
 from std_msgs.msg import Int32
@@ -36,13 +38,40 @@ class HomeServiceChallengeCore(Node):
             automatically_declare_parameters_from_overrides=True
         )
 
-        self.target_marker_pub = self.create_publisher(Int32, '/target_marker_id', 10)
-        self.manipulator_pub = self.create_publisher(String, '/manipulator_control', 10)
-        self.nav_goal_pub = self.create_publisher(PoseStamped, '/goal_pose', 10)
+        self.target_marker_pub = self.create_publisher(
+            Int32,
+            '/target_marker_id',
+            10
+        )
+        self.manipulator_pub = self.create_publisher(
+            String,
+            '/manipulator_control',
+            10
+        )
+        self.nav_goal_pub = self.create_publisher(
+            PoseStamped,
+            '/goal_pose',
+            10
+        )
 
-        self.create_subscription(String, '/scenario_selection', self.scenario_callback, 10)
-        self.create_subscription(Bool, '/is_parking_completed', self.parking_callback, 10)
-        self.create_subscription(Bool, '/is_manipulator_completed', self.manipulator_callback, 10)
+        self.scenario_sub = self.create_subscription(
+            String,
+            '/scenario_selection',
+            self.scenario_callback,
+            10
+        )
+        self.is_parking_completed_sub = self.create_subscription(
+            Bool,
+            '/is_parking_completed',
+            self.parking_callback,
+            10
+        )
+        self.is_manipulator_completed_sub = self.create_subscription(
+            Bool,
+            '/is_manipulator_completed',
+            self.manipulator_callback,
+            10
+        )
 
         self.selected_scenario = None
         self.scenario_running = False
@@ -60,12 +89,12 @@ class HomeServiceChallengeCore(Node):
 
     def parking_callback(self, msg: Bool):
         if msg.data:
-            self.get_logger().info('Parking completed received.')
+            self.get_logger().info('Parking completed')
             self.parking_event.set()
 
     def manipulator_callback(self, msg: Bool):
         if msg.data:
-            self.get_logger().info('Manipulator task completed received.')
+            self.get_logger().info('Manipulator task completed.')
             self.manipulator_event.set()
 
     def list_to_pose_stamped(self, pose_list: list) -> PoseStamped:
@@ -98,25 +127,20 @@ class HomeServiceChallengeCore(Node):
         end_pose_list = self.get_parameter(
             end_pose_list).get_parameter_value().double_array_value
 
-        self.get_logger().info(f'Publishing target_marker_id: {target_marker_id}')
         marker_msg = Int32()
         marker_msg.data = target_marker_id
         self.target_marker_pub.publish(marker_msg)
 
-        self.get_logger().info('Waiting for parking to complete (first parking)...')
         self.parking_event.clear()
-        if not self.parking_event.wait(timeout=30.0):
+        if not self.parking_event.wait(timeout=90.0):
             self.get_logger().error('Parking did not complete within timeout.')
             self.scenario_running = False
             return
-        self.get_logger().info('Parking completed.')
 
-        self.get_logger().info('Sending pick_target command to manipulator_control.')
         pick_msg = String()
         pick_msg.data = 'pick_target'
         self.manipulator_pub.publish(pick_msg)
 
-        self.get_logger().info('Waiting for manipulator to complete pick_target...')
         self.manipulator_event.clear()
         if not self.manipulator_event.wait(timeout=30.0):
             self.get_logger().error('Manipulator pick_target did not complete within timeout.')
@@ -124,32 +148,53 @@ class HomeServiceChallengeCore(Node):
             return
         self.get_logger().info('Manipulator pick_target completed.')
 
-        self.get_logger().info('Publishing nav2 goal_pose for navigation to target location.')
-        nav_pose_msg = self.list_to_pose_stamped(goal_pose_list)
-        self.nav_goal_pub.publish(nav_pose_msg)
+        self.get_logger().info('Sending navigation goal to target location.')
+        nav_action_client = ActionClient(self, NavigateToPose, 'navigate_to_pose')
+        goal_msg = NavigateToPose.Goal()
+        goal_msg.pose = self.list_to_pose_stamped(goal_pose_list)
 
-        self.get_logger().info('Simulating navigation (sleep for 5 seconds)...')
-        time.sleep(5)
+        if not nav_action_client.wait_for_server(timeout_sec=10.0):
+            self.get_logger().error('Navigation action server not available!')
+            self.scenario_running = False
+            return
 
-        self.get_logger().info(f'Publishing goal_marker_id: {goal_marker_id}')
+        send_goal_future = nav_action_client.send_goal_async(goal_msg)
+        while not send_goal_future.done():
+            time.sleep(0.1)
+
+        goal_handle = send_goal_future.result()
+        if not goal_handle.accepted:
+            self.get_logger().error('Navigation goal rejected!')
+            self.scenario_running = False
+            return
+
+        self.get_logger().info('Navigation goal accepted, waiting for result...')
+        result_future = goal_handle.get_result_async()
+        while not result_future.done():
+            time.sleep(0.1)
+
+        result = result_future.result()
+        if result.status != 4:
+            self.get_logger().error('Navigation failed!')
+            self.scenario_running = False
+            return
+
+        self.get_logger().info('Navigation reached target location.')
+
         goal_marker_msg = Int32()
         goal_marker_msg.data = goal_marker_id
         self.target_marker_pub.publish(goal_marker_msg)
 
-        self.get_logger().info('Waiting for parking to complete at goal marker...')
         self.parking_event.clear()
-        if not self.parking_event.wait(timeout=30.0):
-            self.get_logger().error('Parking at goal marker did not complete within timeout.')
+        if not self.parking_event.wait(timeout=90.0):
+            self.get_logger().error('Parking did not complete within timeout.')
             self.scenario_running = False
             return
-        self.get_logger().info('Parking at goal marker completed.')
 
-        self.get_logger().info('Sending place_target command to manipulator_control.')
         place_msg = String()
         place_msg.data = 'place_target'
         self.manipulator_pub.publish(place_msg)
 
-        self.get_logger().info('Waiting for manipulator to complete place_target...')
         self.manipulator_event.clear()
         if not self.manipulator_event.wait(timeout=30.0):
             self.get_logger().error('Manipulator place_target did not complete within timeout.')
@@ -157,7 +202,7 @@ class HomeServiceChallengeCore(Node):
             return
         self.get_logger().info('Manipulator place_target completed.')
 
-        self.get_logger().info('Publishing nav2 goal_pose for returning to home (end_pose).')
+        self.get_logger().info('Publishing nav2 message to home.')
         end_pose_msg = self.list_to_pose_stamped(end_pose_list)
         self.nav_goal_pub.publish(end_pose_msg)
 

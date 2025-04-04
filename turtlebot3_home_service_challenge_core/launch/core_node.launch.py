@@ -17,43 +17,73 @@
 # Author: ChanHyeong Lee
 
 from launch import LaunchDescription
+from launch.actions import DeclareLaunchArgument
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import LaunchConfiguration
 from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    laucnh_mode_arg = DeclareLaunchArgument(
+        'launch_mode',
+        default_value='simulation',
+        description='launch mode type [simulation, actual]'
+    )
+    launch_mode = LaunchConfiguration('launch_mode')
+
+    marker_size_arg = DeclareLaunchArgument(
+        'marker_size',
+        default_value='0.088',
+        description='marker size double value'
+    )
+    marker_size = LaunchConfiguration('marker_size')
+
     scenario_yaml = PathJoinSubstitution([
         FindPackageShare('turtlebot3_home_service_challenge_core'),
         'config',
         'scenario.yaml'
     ])
 
-    return LaunchDescription([
+    laucnh_aruco_node = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('turtlebot3_home_service_challenge_aruco'),
+                'launch',
+                'aruco_node.launch.py'
+            ])
+        ]),
+        launch_arguments={
+            'launch_mode': launch_mode,
+            'marker_size': marker_size,
+        }.items(),
+    )
 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                PathJoinSubstitution([
-                    FindPackageShare('turtlebot3_home_service_challenge_aruco'),
-                    'launch',
-                    'aruco_node.launch.py'
-                ])
-            ]),
-        ),
+    launch_manipulator_node = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('turtlebot3_home_service_challenge_manipulator'),
+                'launch',
+                'manipulator_node.launch.py'
+            ])
+        ]),
+    )
 
-        Node(
-            package='turtlebot3_home_service_challenge_manipulator',
-            executable='manipulator_controller',
-            name='manipulator_controller',
-            output='screen',
-        ),
-
-        Node(
+    core_node = Node(
             package='turtlebot3_home_service_challenge_core',
             executable='home_service_challenge_core',
             name='home_service_challenge_core',
-            parameters=[scenario_yaml]
-        ),
+            parameters=[
+                scenario_yaml,
+            ]
+        )
+
+    return LaunchDescription([
+        laucnh_mode_arg,
+        marker_size_arg,
+        laucnh_aruco_node,
+        launch_manipulator_node,
+        core_node,
     ])

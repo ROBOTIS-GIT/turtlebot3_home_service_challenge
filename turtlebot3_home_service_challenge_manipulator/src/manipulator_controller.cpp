@@ -137,7 +137,6 @@ private:
     auto completed_msg = std_msgs::msg::Bool();
     completed_msg.data = true;
     manipulator_completed_pub_->publish(completed_msg);
-    RCLCPP_INFO(this->get_logger(), "Published /is_manipulator_completed: true");
   }
 
   rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;

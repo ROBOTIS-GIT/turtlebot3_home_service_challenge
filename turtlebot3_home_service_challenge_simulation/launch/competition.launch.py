@@ -105,19 +105,6 @@ def generate_launch_description():
             }.items(),
         ),
 
-        IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                PathJoinSubstitution([
-                    FindPackageShare('turtlebot3_home_service_challenge_tools'),
-                    'launch',
-                    'move_group.launch.py'
-                ])
-            ]),
-            launch_arguments={
-                'use_sim': 'true',
-            }.items(),
-        ),
-
         Node(
             package='gazebo_ros',
             executable='spawn_entity.py',

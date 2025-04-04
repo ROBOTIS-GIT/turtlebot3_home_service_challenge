@@ -6,7 +6,7 @@ package_name = 'turtlebot3_home_service_challenge_aruco'
 
 setup(
     name=package_name,
-    version='1.0.1',
+    version='1.0.2',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
@@ -19,8 +19,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'aruco_detect = turtlebot3_home_service_challenge_aruco.aruco_detect:main',
             'aruco_parking = turtlebot3_home_service_challenge_aruco.aruco_parking:main',
+            'aruco_tracker = turtlebot3_home_service_challenge_aruco.aruco_tracker:main',
         ],
     },
 )
