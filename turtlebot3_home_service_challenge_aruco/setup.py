@@ -19,8 +19,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'aruco_detect = turtlebot3_home_service_challenge_aruco.aruco_detect:main',
             'aruco_parking = turtlebot3_home_service_challenge_aruco.aruco_parking:main',
+            'aruco_tracker = turtlebot3_home_service_challenge_aruco.aruco_tracker:main',
         ],
     },
 )
