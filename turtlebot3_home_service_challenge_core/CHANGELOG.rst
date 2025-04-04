@@ -7,6 +7,7 @@ Changelog for package turtlebot3_home_service_challenge_core
 * Support for actual robot
 * Updated [actual / simulation] selection with execution arguments.
 * Updated ArUco marker size statement selection with execution arguments.
+* Contributors: ChanHyeong Lee
 
 1.0.1 (2025-03-19)
 ------------------
