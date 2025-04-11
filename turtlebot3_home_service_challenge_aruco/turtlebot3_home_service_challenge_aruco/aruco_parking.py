@@ -288,7 +288,6 @@ class ArUcoParking(Node):
     def seq_parking(self):
         desired_angle_turn = math.atan2(self.marker_2d_pose_y - 0, self.marker_2d_pose_x - 0)
         self.fn_track_marker(-desired_angle_turn)
-        # self.get_logger().info(f'{self.marker_2d_pose_x}')
         if abs(self.marker_2d_pose_x) < self.parking_distance_to_marker:
             self.fn_stop()
             return True
