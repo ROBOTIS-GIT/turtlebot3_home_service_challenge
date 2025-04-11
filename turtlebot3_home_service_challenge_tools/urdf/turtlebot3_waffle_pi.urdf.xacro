@@ -125,7 +125,7 @@ https://github.com/ROBOTIS-GIT/turtlebot3/blob/kinetic-devel/turtlebot3_descript
 
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="0.5" />
+      <mass value="2.0" />
       <inertia ixx="0.001" ixy="0.0" ixz="0.0"
                iyy="0.001" iyz="0.0"
                izz="0.001" />
@@ -148,7 +148,7 @@ https://github.com/ROBOTIS-GIT/turtlebot3/blob/kinetic-devel/turtlebot3_descript
 
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="0.5" />
+      <mass value="2.0" />
       <inertia ixx="0.001" ixy="0.0" ixz="0.0"
                iyy="0.001" iyz="0.0"
                izz="0.001" />

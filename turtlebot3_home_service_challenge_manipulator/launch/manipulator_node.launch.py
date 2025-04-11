@@ -17,18 +17,33 @@
 # Author: ChanHyeong Lee
 
 from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
+from launch.substitutions import PathJoinSubstitution
 from launch_ros.actions import Node
+from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
 
-    manipulator_node = Node(
-        package='turtlebot3_home_service_challenge_manipulator',
-        executable='manipulator_controller',
-        name='manipulator_controller',
-        output='screen',
-    )
-
     return LaunchDescription([
-        manipulator_node,
+        IncludeLaunchDescription(
+            PythonLaunchDescriptionSource([
+                PathJoinSubstitution([
+                    FindPackageShare('turtlebot3_home_service_challenge_tools'),
+                    'launch',
+                    'move_group.launch.py'
+                ])
+            ]),
+            launch_arguments={
+                'use_sim': 'true',
+            }.items(),
+        ),
+
+        Node(
+            package='turtlebot3_home_service_challenge_manipulator',
+            executable='manipulator_controller',
+            name='manipulator_controller',
+            output='screen',
+        )
     ])
