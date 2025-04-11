@@ -116,10 +116,10 @@ class ArUcoParking(Node):
         if not self.is_odom_received:
             self.is_odom_received = True
 
-        pos_x, pos_y, theta = self.get_2D_robot_pose(robot_odom_msg)
+        pose_x, pose_y, theta = self.get_2D_robot_pose(robot_odom_msg)
 
-        self.robot_2d_pose_x = pos_x
-        self.robot_2d_pose_y = pos_y
+        self.robot_2d_pose_x = pose_x
+        self.robot_2d_pose_y = pose_y
         self.robot_2d_theta = theta
 
         if (self.robot_2d_theta - self.previous_robot_2d_theta) > 5.:
@@ -141,10 +141,10 @@ class ArUcoParking(Node):
         result = self.get_2D_marker_pose()
         if result is None:
             return
-        pos_x, pos_y, theta = result
+        pose_x, pose_y, theta = result
 
-        self.marker_2d_pose_x = pos_x
-        self.marker_2d_pose_y = pos_y
+        self.marker_2d_pose_x = pose_x
+        self.marker_2d_pose_y = pose_y
         self.marker_2d_theta = theta - math.pi
 
         self.is_marker_pose_received = True
@@ -379,10 +379,10 @@ class ArUcoParking(Node):
 
         theta = theta % (2 * np.pi)
 
-        pos_x = robot_odom_msg.pose.pose.position.x
-        pos_y = robot_odom_msg.pose.pose.position.y
+        pose_x = robot_odom_msg.pose.pose.position.x
+        pose_y = robot_odom_msg.pose.pose.position.y
 
-        return pos_x, pos_y, theta
+        return pose_x, pose_y, theta
 
     def get_2D_marker_pose(self):
         try:
@@ -405,10 +405,10 @@ class ArUcoParking(Node):
 
         theta = theta % (2 * np.pi)
 
-        pos_x = trans.transform.translation.x
-        pos_y = trans.transform.translation.y
+        pose_x = trans.transform.translation.x
+        pose_y = trans.transform.translation.y
 
-        return pos_x, pos_y, theta
+        return pose_x, pose_y, theta
 
     def calculate_distance_points(self, x1, x2, y1, y2):
         return math.sqrt((x1 - x2) ** 2. + (y1 - y2) ** 2.)
