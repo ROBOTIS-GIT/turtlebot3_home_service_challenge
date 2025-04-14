@@ -17,20 +17,33 @@
 # Author: ChanHyeong Lee
 
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import PathJoinSubstitution
+from launch.actions import DeclareLaunchArgument
+from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
-from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
+    laucnh_mode_arg = DeclareLaunchArgument(
+        'launch_mode',
+        default_value='simulation',
+        description='launch mode type [simulation, actual]')
+    launch_mode = LaunchConfiguration('launch_mode')
 
-    detect_node = Node(
+    marker_size_arg = DeclareLaunchArgument(
+        'marker_size',
+        default_value='0.088',
+        description='marker size double value')
+    marker_size = LaunchConfiguration('marker_size')
+
+    tracker_node = Node(
         package='turtlebot3_home_service_challenge_aruco',
-        executable='aruco_detect',
-        name='aruco_detect',
+        executable='aruco_tracker',
+        name='aruco_tracker',
         output='screen',
+        parameters=[{
+            'launch_mode': launch_mode,
+            'marker_size': marker_size,
+        }],
     )
 
     parking_node = Node(
@@ -40,18 +53,9 @@ def generate_launch_description():
         output='screen',
     )
 
-    navigation_node = IncludeLaunchDescription(
-            PythonLaunchDescriptionSource([
-                PathJoinSubstitution([
-                    FindPackageShare('turtlebot3_home_service_challenge_tools'),
-                    'launch',
-                    'navigation2.launch.py'
-                ])
-            ]),
-        )
-
     return LaunchDescription([
-        navigation_node,
-        detect_node,
+        laucnh_mode_arg,
+        marker_size_arg,
+        tracker_node,
         parking_node,
     ])
