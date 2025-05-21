@@ -11,18 +11,21 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+#find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(srdfdom REQUIRED)
 
 add_executable(manipulator_controller src/manipulator_controller.cpp)
+
 target_include_directories(manipulator_controller PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-  $<INSTALL_INTERFACE:include>)
-ament_target_dependencies(
-  manipulator_controller
-  "moveit_ros_planning_interface"
-  "rclcpp"
+  $<INSTALL_INTERFACE:include>
+  # ${moveit_ros_planning_interface_INCLUDE_DIRS}
+)
+
+target_link_libraries(manipulator_controller
+  rclcpp::rclcpp
+  moveit_ros_planning_interface::moveit_move_group_interface
 )
 
 install(TARGETS manipulator_controller
