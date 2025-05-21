@@ -52,6 +52,7 @@ jobs:
       - name: Check ROS Dependencies
         shell: bash
         run: |
+          set -e
           source /opt/ros/${{ matrix.ros_distribution }}/setup.bash
           echo "--- Performing rosdep check for ROS 2 ${{ matrix.ros_distribution }} ---"
           if rosdep check --from-paths src --ignore-src --rosdistro ${{ matrix.ros_distribution }}; then
