@@ -11,7 +11,6 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-#find_package(moveit_ros_planning_interface REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
 find_package(rclcpp REQUIRED)
 
@@ -20,7 +19,6 @@ add_executable(manipulator_controller src/manipulator_controller.cpp)
 target_include_directories(manipulator_controller PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
-  # ${moveit_ros_planning_interface_INCLUDE_DIRS}
 )
 
 target_link_libraries(manipulator_controller
@@ -34,7 +32,6 @@ install(TARGETS manipulator_controller
 install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}
 )
-
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
