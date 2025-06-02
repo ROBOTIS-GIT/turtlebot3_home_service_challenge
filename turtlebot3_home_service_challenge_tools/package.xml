@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>turtlebot3_home_service_challenge_tools</name>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <description>
     turtlebot3_home_service_challenge_tools
   </description>
@@ -15,11 +15,14 @@
   <author email="kmjung@robotis.com">kayman</author>
   <author email="ashekim@robotis.com">Ashe Kim</author>
   <author email="dddoggi1207@gmail.com">ChanHyeong Lee</author>
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
-  <exec_depend>ament_cmake</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>moveit_ros_move_group</exec_depend>
+  <exec_depend>nav2_bringup</exec_depend>
+  <exec_depend>nav2_bt_navigator</exec_depend>
+  <exec_depend>turtlebot3_manipulation_bringup</exec_depend>
+  <exec_depend>turtlebot3_manipulation_gazebo</exec_depend>
+  <exec_depend>turtlebot3_manipulation_moveit_config</exec_depend>
+  <exec_depend>turtlebot3_manipulation_navigation2</exec_depend>
   <export>
     <build_type>ament_cmake</build_type>
   </export>
