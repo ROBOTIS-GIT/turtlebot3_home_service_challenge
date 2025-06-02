@@ -20,7 +20,6 @@
   <exec_depend>nav2_bringup</exec_depend>
   <exec_depend>nav2_bt_navigator</exec_depend>
   <exec_depend>turtlebot3_manipulation_bringup</exec_depend>
-  <exec_depend>turtlebot3_manipulation_gazebo</exec_depend>
   <exec_depend>turtlebot3_manipulation_moveit_config</exec_depend>
   <exec_depend>turtlebot3_manipulation_navigation2</exec_depend>
   <export>
