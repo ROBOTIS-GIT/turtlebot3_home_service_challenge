@@ -80,5 +80,4 @@ jobs:
             turtlebot3_home_service_challenge_aruco
             turtlebot3_home_service_challenge_core
             turtlebot3_home_service_challenge_manipulator
-            turtlebot3_home_service_challenge_simulation
             turtlebot3_home_service_challenge_tools
