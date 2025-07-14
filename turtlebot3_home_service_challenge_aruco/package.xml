@@ -20,7 +20,6 @@
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>python3-scipy</exec_depend>
   <exec_depend>python3-opencv</exec_depend>
-  <exec_depend>python-opencv-contrib-pip</exec_depend>
   <exec_depend>geometry_msgs</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
   <exec_depend>rclpy</exec_depend>
