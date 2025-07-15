@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>turtlebot3_home_service_challenge</name>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <description>
     ROS packages for the Turtlebot3 Home Service Challenge (meta package)
   </description>
@@ -18,7 +18,6 @@
   <exec_depend>turtlebot3_home_service_challenge_aruco</exec_depend>
   <exec_depend>turtlebot3_home_service_challenge_core</exec_depend>
   <exec_depend>turtlebot3_home_service_challenge_manipulator</exec_depend>
-  <exec_depend>turtlebot3_home_service_challenge_simulation</exec_depend>
   <exec_depend>turtlebot3_home_service_challenge_tools</exec_depend>
   <export>
       <build_type>ament_cmake</build_type>

@@ -35,7 +35,7 @@ def generate_launch_description():
             'turtlebot3_manipulation_moveit_config'), 'launch')
     bringup_launch_dir = os.path.join(
         get_package_share_directory(
-            'turtlebot3_home_service_challenge_simulation'), 'launch')
+            'turtlebot3_manipulation_gazebo'), 'launch')
 
     # RViz
     rviz_launch = IncludeLaunchDescription(
@@ -68,7 +68,7 @@ def generate_launch_description():
     )
 
     gazebo_control_launch = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([bringup_launch_dir, '/test_world.launch.py']),
+        PythonLaunchDescriptionSource([bringup_launch_dir, '/gazebo.launch.py']),
         launch_arguments={
             'world': empty_world_path,
             'x_pose': '0.0',
