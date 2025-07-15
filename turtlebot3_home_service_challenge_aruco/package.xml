@@ -4,7 +4,7 @@
   <name>turtlebot3_home_service_challenge_aruco</name>
   <version>1.0.4</version>
   <description>
-    Using aurco package for turtlebot3_home_service_challenge
+    Using aruco package for turtlebot3_home_service_challenge
   </description>
   <maintainer email="pyo@robotis.com">Pyo</maintainer>
   <license>Apache 2.0</license>
