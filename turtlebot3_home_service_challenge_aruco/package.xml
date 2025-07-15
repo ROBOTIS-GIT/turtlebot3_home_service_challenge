@@ -16,7 +16,6 @@
   <author email="ashekim@robotis.com">Ashe Kim</author>
   <author email="willson@robotis.com">Will Son</author>
   <author email="dddoggi1207@gmail.com">ChanHyeong Lee</author>
-  <exec_depend>python3-pip</exec_depend>
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>python3-scipy</exec_depend>
   <exec_depend>python3-opencv</exec_depend>
