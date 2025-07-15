@@ -16,15 +16,6 @@
 #
 # Authors: Hye-jong KIM
 
-# setup assistant (humble)
-# from moveit_configs_utils import MoveItConfigsBuilder
-# from moveit_configs_utils.launches import generate_move_group_launch
-# def generate_launch_description():
-#     moveit_config = MoveItConfigsBuilder("turtlebot3_manipulation",
-#                     package_name="turtlebot3_manipulation_moveit_config").to_moveit_configs()
-#     return generate_move_group_launch(moveit_config)
-
-
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -103,9 +94,9 @@ def generate_launch_description():
 
     # Moveit Controllers
     moveit_simple_controllers_yaml_path = os.path.join(
-      get_package_share_directory('turtlebot3_manipulation_moveit_config'),
-      'config',
-      'moveit_controllers.yaml',
+        get_package_share_directory('turtlebot3_manipulation_moveit_config'),
+        'config',
+        'moveit_controllers.yaml',
     )
     with open(moveit_simple_controllers_yaml_path, 'r') as file:
         moveit_simple_controllers_yaml = yaml.safe_load(file)

@@ -49,6 +49,10 @@ jobs:
         with:
           required-ros-distributions: ${{ matrix.ros_distribution }}
 
+      - name: Add pip break-system-packages for rosdep
+        run: |
+          printf "[install]\nbreak-system-packages = true\n" | sudo tee /etc/pip.conf
+
       - name: Check and Install ROS dependencies
         shell: bash
         run: |
@@ -76,5 +80,4 @@ jobs:
             turtlebot3_home_service_challenge_aruco
             turtlebot3_home_service_challenge_core
             turtlebot3_home_service_challenge_manipulator
-            turtlebot3_home_service_challenge_simulation
             turtlebot3_home_service_challenge_tools

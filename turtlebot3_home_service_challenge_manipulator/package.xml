@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>turtlebot3_home_service_challenge_manipulator</name>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <description>
     Manipulator controller package for turtlebot3_home_service_challenge
   </description>
@@ -16,8 +16,8 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
   <depend>moveit_ros_planning_interface</depend>
   <depend>rclcpp</depend>
-  <test_depend>ament_lint_auto</test_depend>
-  <test_depend>ament_lint_common</test_depend>
+  <depend>std_msgs</depend>
+  <exec_depend>turtlebot3_home_service_challenge_tools</exec_depend>
   <export>
     <build_type>ament_cmake</build_type>
     <ament_cppcheck language="c++"/>

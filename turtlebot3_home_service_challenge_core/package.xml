@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>turtlebot3_home_service_challenge_core</name>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <description>
     Core package for turtlebot3_home_service_challenge
   </description>
@@ -13,10 +13,12 @@
   <url type="repository">https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge</url>
   <url type="bugtracker">https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge/issues</url>
   <author email="dddoggi1207@gmail.com">ChanHyeong Lee</author>
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+  <exec_depend>nav2_msgs</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>turtlebot3_home_service_challenge_aruco</exec_depend>
+  <exec_depend>turtlebot3_home_service_challenge_manipulator</exec_depend>
   <export>
     <build_type>ament_python</build_type>
   </export>

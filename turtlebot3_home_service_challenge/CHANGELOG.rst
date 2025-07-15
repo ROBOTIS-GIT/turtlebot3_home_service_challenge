@@ -2,6 +2,11 @@
 Changelog for package turtlebot3_home_service_challenge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.3 (2025-06-02)
+------------------
+* Remove Gazebo simulation package
+* Contributors: ChanHyeong Lee
+
 1.0.2 (2025-04-04)
 ------------------
 * Support for actual robot
