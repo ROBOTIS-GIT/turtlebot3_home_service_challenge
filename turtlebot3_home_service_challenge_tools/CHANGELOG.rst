@@ -2,6 +2,11 @@
 Changelog for package turtlebot3_home_service_challenge_tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.4 (2025-07-16)
+------------------
+* Remove ament_lint_auto in CMakeLists.txt
+* Contributors: Hyungyu Kim
+
 1.0.3 (2025-06-02)
 ------------------
 * None
