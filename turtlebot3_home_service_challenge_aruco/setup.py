@@ -6,7 +6,7 @@ package_name = 'turtlebot3_home_service_challenge_aruco'
 
 setup(
     name=package_name,
-    version='1.0.4',
+    version='1.0.5',
     packages=[package_name],
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
