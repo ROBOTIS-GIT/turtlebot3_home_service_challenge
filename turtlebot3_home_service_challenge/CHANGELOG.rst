@@ -2,6 +2,11 @@
 Changelog for package turtlebot3_home_service_challenge
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.5 (2025-07-17)
+------------------
+* Added buildtool_depend in package.xml of turtlebot3_home_service_challenge_tools
+* Contributors: Hyungyu Kim
+
 1.0.4 (2025-07-16)
 ------------------
 * Remove ament_lint_auto in CMakeLists.txt
