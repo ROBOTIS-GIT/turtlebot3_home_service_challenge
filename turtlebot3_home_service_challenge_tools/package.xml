@@ -15,6 +15,7 @@
   <author email="kmjung@robotis.com">kayman</author>
   <author email="ashekim@robotis.com">Ashe Kim</author>
   <author email="dddoggi1207@gmail.com">ChanHyeong Lee</author>
+  <buildtool_depend>ament_cmake</buildtool_depend>
   <exec_depend>controller_manager</exec_depend>
   <exec_depend>moveit_ros_move_group</exec_depend>
   <exec_depend>nav2_bringup</exec_depend>
