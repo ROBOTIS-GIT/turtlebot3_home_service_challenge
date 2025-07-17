@@ -4,7 +4,7 @@ Changelog for package turtlebot3_home_service_challenge
 
 1.0.5 (2025-07-17)
 ------------------
-* Added buildtool_depend in package.xml of turtlebot3_home_service_challenge_tools
+* Added a missing buildtool_depend (ament_cmake) to the package.xml of turtlebot3_home_service_challenge_tools
 * Contributors: Hyungyu Kim
 
 1.0.4 (2025-07-16)
